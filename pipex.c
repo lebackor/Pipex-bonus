@@ -6,7 +6,7 @@
 /*   By: lebackor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:29:43 by lebackor          #+#    #+#             */
-/*   Updated: 2022/05/17 15:29:46 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:38:06 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int ac, char **av, char **envp)
 	t_data	p;
 
 	if (ac != 5)
-		return (ft_printf("Not enough arguments\n"));
+		return (ft_printf("Not 4 arguments\n"));
 	p = (t_data){0};
 	p.av = av;
 	p.env = envp;
