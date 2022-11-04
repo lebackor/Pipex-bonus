@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lebackor <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/17 15:32:59 by lebackor          #+#    #+#              #
-#    Updated: 2022/05/17 15:33:06 by lebackor         ###   ########.fr        #
+#    Updated: 2022/11/04 19:14:48 by lebackor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS	=	srcs/ft_split.c\
 			pipex.c\
 			parsing.c\
 			cleaning.c\
+			multipipex.c\
 
 OBJS = ${SRCS:.c=.o}
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebackor <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:29:43 by lebackor          #+#    #+#             */
-/*   Updated: 2022/05/17 15:38:06 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/04 19:17:14 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,25 +91,48 @@ int	main(int ac, char **av, char **envp)
 {
 	t_data	p;
 
-	if (ac != 5)
-		return (ft_printf("Not 4 arguments\n"));
+	if (ac < 5)
+		return (ft_printf("less than 4 arguments\n"));
 	p = (t_data){0};
 	p.av = av;
+	p.ac = ac;
 	p.env = envp;
 	p.i = -1;
-	p.f1 = open(av[1], O_RDONLY);
-	p.f2 = open(av[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (p.f1 < 0 || p.f2 < 0)
+	if (ac == 5)
 	{
-		if (p.f1 < 0)
+		p.f1 = open(av[1], O_RDONLY);
+		p.f2 = open(av[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
+		if (p.f1 < 0 || p.f2 < 0)
 		{
-			perror(av[1]);
-			if (p.f2 >= 0)
-				close(p.f2);
+			if (p.f1 < 0)
+			{
+				perror(av[1]);
+				if (p.f2 >= 0)
+					close(p.f2);
+			}
+			if (p.f2 < 0)
+				close(p.f1);
+			ft_exit_fail(&p);
 		}
-		if (p.f2 < 0)
-			close(p.f1);
-		ft_exit_fail(&p);
+		pipex(p);
 	}
-	pipex(p);
+	else
+	{
+		printf("more than 4\n");
+		p.f1 = open(av[1], O_RDONLY);
+		p.f2 = open(av[ac - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
+		if (p.f1 < 0 || p.f2 < 0)
+		{
+			if (p.f1 < 0)
+			{
+				perror(av[1]);
+				if (p.f2 >= 0)
+					close(p.f2);
+			}
+			if (p.f2 < 0)
+				close(p.f1);
+			ft_exit_fail(&p);
+		}
+		multipipe(&p);
+	}
 }
