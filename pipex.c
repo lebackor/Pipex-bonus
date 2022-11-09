@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:29:43 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/04 19:17:14 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:08:15 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int	main(int ac, char **av, char **envp)
 	p.ac = ac;
 	p.env = envp;
 	p.i = -1;
+	p.stock = malloc(sizeof(int) * ((p.ac - 3) * 2));
 	if (ac == 5)
 	{
 		p.f1 = open(av[1], O_RDONLY);
@@ -120,6 +121,11 @@ int	main(int ac, char **av, char **envp)
 	{
 		printf("more than 4\n");
 		p.f1 = open(av[1], O_RDONLY);
+		if (p.f1 < 0)
+		{
+			perror(av[1]);
+			ft_exit_fail(&p);
+		}
 		p.f2 = open(av[ac - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
 		if (p.f1 < 0 || p.f2 < 0)
 		{

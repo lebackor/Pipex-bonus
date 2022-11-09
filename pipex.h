@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:21:41 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/04 19:37:03 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/09 19:18:09 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_data{
 	int		i;
 	int		j;
 	int		k;
+	int		ifork;
 	pid_t	parent;
 }	t_data;
 
@@ -75,4 +76,6 @@ void		ft_putstr_fd(char *s, int fd);
 char		*parsep1(t_data *p);
 char		*parsep2(t_data *p);
 int			multipipe(t_data *p);
+void		child_process(t_data p);
+void		mchild_process(t_data *p);
 #endif
