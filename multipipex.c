@@ -5,7 +5,7 @@ int	multipipe(t_data *p)
 	int	i;
 
 	i = -1;
-	p->ac = p->ac - 3;
+
 	p->ifork = 1;
 	printf("%d\n", p->ac);
 	pipe(p->end);

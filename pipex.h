@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:21:41 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/09 19:18:09 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:02:25 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,30 +24,36 @@
 # include <errno.h>
 # include <stdio.h>
 
+typedef struct p_data{
+	int				number;
+	struct p_data		*next;
+}	t_nb;
+
 typedef struct s_data{
-	char	**av;
-	char	**env;
-	char	*str;
-	char	*strchild;
-	char	**paths;
-	char	**pathschild;
-	char	*cmdargs;
-	char	*cmdargschild;
-	char	**avsplit;
-	char	**avsplitchild;
-	int		f1;
-	int		f2;
-	int		cmd1;
-	int		cmd2;
-	int		ac;
-	int		end[2];
-	int		*stock;
-	int		status;
-	int		i;
-	int		j;
-	int		k;
-	int		ifork;
-	pid_t	parent;
+	char			**av;
+	char			**env;
+	char			*str;
+	char			*strchild;
+	char			**paths;
+	char			**pathschild;
+	char			*cmdargs;
+	char			*cmdargschild;
+	char			**avsplit;
+	char			**avsplitchild;
+	int				f1;
+	int				f2;
+	int				cmd1;
+	int				cmd2;
+	int				ac;
+	int				end[2];
+	int				*stock;
+	int				status;
+	int				i;
+	int				j;
+	int				k;
+	int				ifork;
+	pid_t			parent;
+	struct t_nb		*nb;
 }	t_data;
 
 int			ft_printf(const char *str, ...);
@@ -78,4 +84,7 @@ char		*parsep2(t_data *p);
 int			multipipe(t_data *p);
 void		child_process(t_data p);
 void		mchild_process(t_data *p);
+t_nb		*create_liste(t_nb *p);
+t_nb		*ft_addback(t_nb *p, int i);
+
 #endif

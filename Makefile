@@ -6,7 +6,7 @@
 #    By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/17 15:32:59 by lebackor          #+#    #+#              #
-#    Updated: 2022/11/09 17:43:04 by lebackor         ###   ########.fr        #
+#    Updated: 2022/11/11 17:00:17 by lebackor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS	=	srcs/ft_split.c\
 			cleaning.c\
 			multipipex.c\
 			multichilds.c \
+			liste.c \
 
 OBJS = ${SRCS:.c=.o}
 

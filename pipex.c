@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:29:43 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/08 17:08:15 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:05:09 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,23 @@ void	pipex(t_data p)
 int	main(int ac, char **av, char **envp)
 {
 	t_data	p;
+	t_nb	*number;
+	int i;
+
 
 	if (ac < 5)
 		return (ft_printf("less than 4 arguments\n"));
+	number = NULL;
 	p = (t_data){0};
+	//*number = (t_nb){0};
 	p.av = av;
 	p.ac = ac;
 	p.env = envp;
 	p.i = -1;
+	i = 0;
 	p.stock = malloc(sizeof(int) * ((p.ac - 3) * 2));
+	if (ac > 5)
+		create_liste(number);
 	if (ac == 5)
 	{
 		p.f1 = open(av[1], O_RDONLY);
@@ -120,6 +128,7 @@ int	main(int ac, char **av, char **envp)
 	else
 	{
 		printf("more than 4\n");
+		p.ac = p.ac - 3;
 		p.f1 = open(av[1], O_RDONLY);
 		if (p.f1 < 0)
 		{
@@ -139,6 +148,8 @@ int	main(int ac, char **av, char **envp)
 				close(p.f1);
 			ft_exit_fail(&p);
 		}
+		while (++i < p.ac + 1)
+			ft_addback(number, i);
 		multipipe(&p);
 	}
 }
