@@ -1,13 +1,12 @@
 #include "pipex.h"
 
-int	multipipe(t_data *p)
+int	multipipe(t_data *p, t_nb *nb)
 {
 	int	i;
 
 	i = -1;
-
 	p->ifork = 1;
-	printf("%d\n", p->ac);
+	//printf("%d\n", p->ac);
 	pipe(p->end);
 	while (++i < p->ac)
 	{
@@ -16,7 +15,11 @@ int	multipipe(t_data *p)
 			return (0);
 		p->stock[++p->ifork] = p->parent;
 		if (p->parent == 0)
-			mchild_process(p);
+		{
+	//		printf("Number = %d\n", nb->number);
+			mchild_process(p, nb);
+		}
+		nb = nb->next;
 	}
 	i = -1;
 	while (++i < p->ac)

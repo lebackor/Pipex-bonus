@@ -1,9 +1,10 @@
 #include "pipex.h"
 
-void	mchild_process(t_data *p)
+void	mchild_process(t_data *p, t_nb *nb)
 {
-	p->str = parse_split(p);
-	//printf("%s\n", p->str );
+	(void) nb;
+	p->str = parse_split(p, nb);
+	printf("N%d = %s\n", nb->number, p->str);
 	if (!p->str)
 	{
 		ft_free_table(p->paths);
@@ -12,8 +13,22 @@ void	mchild_process(t_data *p)
 		ft_putstr_fd(": command not found\n", STDOUT_FILENO);
 		exit(EXIT_FAILURE);
 	}
-	dup2(p->f1, STDIN_FILENO);
-	dup2(p->end[1], STDOUT_FILENO);
+	if (nb->number == 1)
+	{
+		dup2(p->f1, STDIN_FILENO);
+		dup2(p->end[1], STDOUT_FILENO);
+	}
+	else if (nb->number == p->ac)
+	{
+		printf("Last arg\n");
+		dup2(p->end[0], STDIN_FILENO);
+		dup2(p->f2, STDOUT_FILENO);
+	}
+	else
+	{
+		dup2(p->end[0], STDIN_FILENO);
+		dup2(p->end[1], STDOUT_FILENO);
+	}
 //	close(p.end[0]);
 //	close(p.end[1]);
 //	close(p.f1);

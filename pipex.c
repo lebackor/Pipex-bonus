@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:29:43 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/11 17:05:09 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/12 16:15:29 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int	main(int ac, char **av, char **envp)
 	p.i = -1;
 	i = 0;
 	p.stock = malloc(sizeof(int) * ((p.ac - 3) * 2));
+	number = malloc(sizeof(t_nb));
 	if (ac > 5)
 		create_liste(number);
 	if (ac == 5)
@@ -150,6 +151,6 @@ int	main(int ac, char **av, char **envp)
 		}
 		while (++i < p.ac + 1)
 			ft_addback(number, i);
-		multipipe(&p);
+		multipipe(&p, number);
 	}
 }
