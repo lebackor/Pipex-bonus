@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:21:41 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/12 16:46:42 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/12 18:28:10 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void		ft_putstr_fd(char *s, int fd);
 char		*parsep1(t_data *p);
 char		*parsep2(t_data *p);
 int			multipipe(t_data *p, t_nb *nb);
-void		child_process(t_data p);
+void		child_process(t_data p, t_nb *nb);
 void		mchild_process(t_data *p, t_nb *nb);
 t_nb		*create_liste(t_nb *p);
 t_nb		*ft_addback(t_nb *p, int i);

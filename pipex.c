@@ -6,15 +6,16 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:29:43 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/12 16:15:29 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/12 18:28:44 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	child_process(t_data p)
+void	child_process(t_data p, t_nb *nb)
 {
-	p.str = parse_split(&p);
+
+	p.str = parse_split(&p, nb);
 	if (!p.str)
 	{
 		ft_free_table(p.paths);
@@ -60,7 +61,7 @@ void	second_child(t_data p)
 	exit(1);
 }
 
-void	pipex(t_data p)
+void	pipex(t_data p, t_nb *nb)
 {
 	int	i;
 
@@ -71,7 +72,7 @@ void	pipex(t_data p)
 		return ;
 	p.stock[0] = p.parent;
 	if (p.parent == 0)
-		child_process(p);
+		child_process(p, nb);
 	p.parent = fork();
 	if (p.parent < 0)
 		return ;
@@ -124,7 +125,7 @@ int	main(int ac, char **av, char **envp)
 				close(p.f1);
 			ft_exit_fail(&p);
 		}
-		pipex(p);
+		pipex(p, number);
 	}
 	else
 	{
