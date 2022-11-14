@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:29:43 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/12 18:28:44 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:29:06 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ int	main(int ac, char **av, char **envp)
 	else
 	{
 		printf("more than 4\n");
-		p.ac = p.ac - 3;
+	//	p.ac = p.ac - 3;
 		p.f1 = open(av[1], O_RDONLY);
 		if (p.f1 < 0)
 		{
