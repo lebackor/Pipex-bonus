@@ -4,7 +4,6 @@ void	mchild_process(t_data *p, t_nb *nb)
 {
 	(void) nb;
 	p->str = parse_split(p, nb);
-	//printf("%s | %s \n", p->str, p->avsplit[0]);
 	//printf("N%d = %s\n", nb->number, p->str);
 	if (!p->str)
 	{
@@ -18,27 +17,55 @@ void	mchild_process(t_data *p, t_nb *nb)
 	{
 		dup2(p->f1, STDIN_FILENO);
 		dup2(p->end[1], STDOUT_FILENO);
-	//	close(p->f1);
+	}
+	else if (nb->number != p->ac - 3)
+	{
+		if (nb->number % 2 == 0)
+		{
+
+			dup2(p->end[0], STDIN_FILENO);
+			dup2(p->end2[1], STDOUT_FILENO);
+		}
+		else
+		{
+			dup2(p->end2[0], STDIN_FILENO);
+			dup2(p->end[1], STDOUT_FILENO);
+		}
 	}
 	else if (nb->number == (p->ac - 3))
 	{
-		printf("Last arg\n");
-		dup2(p->end[0], STDIN_FILENO);
-		dup2(p->f2, STDOUT_FILENO);
-	//	close(p->f2);
+		if (nb->number % 2 == 0)
+		{
+			dup2(p->end[0], STDIN_FILENO);
+			dup2(p->f2, STDOUT_FILENO);
+		}
+		else
+		{
+			dup2(p->end2[0], STDIN_FILENO);
+			dup2(p->f2, STDOUT_FILENO);
+		}
+	}
+	if (nb->number % 2 == 0)
+	{
+		close(p->end[0]);
+		close(p->end2[1]);
+		close(p->end2[0]);
+		close(p->end[1]);
 	}
 	else
 	{
-		printf("d\n");
-		dup2(p->end[0], STDIN_FILENO);
-		dup2(p->end[1], STDOUT_FILENO);
+		if (nb->number > 1)
+		{
+			close(p->end2[1]);
+			close(p->end2[0]);
+		}
+		close(p->end[0]);
+		close(p->end[1]);
 	}
-//	close(p->end[0]);
-//	close(p->end[1]);
-//	pipe(p->end);
+	//fprintf(stderr, "%s | %s \n", p->str, p->avsplit[0]);
+	ft_free_table(p->paths);
 	execve(p->str, p->avsplit, p->env);
 	free(p->cmdargs);
-	ft_free_table(p->paths);
 	perror("");
 	exit(1);
 }

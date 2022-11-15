@@ -6,7 +6,7 @@
 /*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:26:51 by lebackor          #+#    #+#             */
-/*   Updated: 2022/11/14 18:38:40 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/15 20:03:57 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,6 @@ char	*parse_split(t_data *p, t_nb *nb)
 	}
 	else
 		p->avsplit = ft_split(p->av[2], ' ');
-//	i = -1;
-//	while (p->avsplit[++i])
-//		printf("%s x\n", p->avsplit[i]);
 	p->cmdargs = parsep1(p);
 	if (p->cmdargs != NULL)
 		return (p->cmdargs);

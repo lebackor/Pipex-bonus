@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaning.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebackor <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lebackor <lebackor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:26:04 by lebackor          #+#    #+#             */
-/*   Updated: 2022/05/17 15:26:43 by lebackor         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:11:24 by lebackor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_exit_fail(t_data *p)
 {
+	printf("yq un soucis\n");
 	if (p->str)
 		free(p->str);
 	if (p->strchild)
