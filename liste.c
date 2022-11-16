@@ -16,6 +16,7 @@ t_nb	*ft_addback(t_nb *p, int i)
 	if (i == 1)
 	{
 		p->number = 1;
+		p->next = NULL;
 	}
 	else
 	{
